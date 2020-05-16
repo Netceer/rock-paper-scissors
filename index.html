@@ -1,9 +1,76 @@
 <!DOCTYPE html>
 <html>
+<head>
 
+</head>
+
+<body>
     <script>
+        // function for computer player to randomly select a move
+      function computerPlay() {
+        let possibleMoves = ["rock", "paper", "scissors"];
+        let computerSelection = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        return computerSelection;
+      }
 
+    //   function to read player moves
+    let playerSelection = "rock"
+
+      function playRound(playerSelection, computerSelection) {
         
+        // when player draws with computer
+        if(playerSelection === computerSelection){
+            return `It's a draw! ${playerSelection} ties with ${computerSelection}`
+        } 
+
+        // when player selects rock
+        if(playerSelection === "rock") {
+            switch(computerSelection){
+                // lose case
+                case "paper":
+                    return `You lose! ${computerSelection} beats ${playerSelection}`
+                
+                // win case
+                case "scissors":
+                    return `You Win! ${playerSelection} beats ${computerSelection}`
+
+            }
+        }
+
+            // when player selects paper
+        if(playerSelection === "paper") {
+            switch(computerSelection){
+                // lose case
+                case "scissors":
+                    return `You lose! ${computerSelection} beats ${playerSelection}`
+
+                // win case
+                case "rock":
+                    return `You Win! ${playerSelection} beats ${computerSelection}`
+
+            }
+
+        }
+
+        // when player selects scissors
+        if(playerSelection === "scissors") {
+            switch(computerSelection){
+                // lose case
+                case "rock":
+                    return `You lose! ${computerSelection} beats ${playerSelection}`
+
+                // win case
+                case "paper":
+                    return `You Win! ${playerSelection} beats ${computerSelection}`
+
+            }
+
+        }
+
+
+      }
+
     </script>
+</body>
 
 </html>
