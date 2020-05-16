@@ -9,79 +9,95 @@
         // function for computer player to randomly select a move
       function computerPlay() {
         let possibleMoves = ["rock", "paper", "scissors"];
-        let computerSelection = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-        return computerSelection;
+        return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
       }
 
-    //   function to read player moves
-
-
-      
-
+     
       function game() {
-          let playerSelection = prompt("hello")
-          let playerScore = 0;
-          let computerScore = 0;
+        let playerScore = 0;
+        let computerScore = 0;
+        let draws = 0;
 
-          function playRound(playerSelection, computerSelection) {
+       
+            // to create 5 round game
+            for (let i = 0; i < 5; i++) {
+                const playerMove = prompt("Rock, paper or scissors?").toLowerCase();
+                const computerMove = computerPlay();
+                let winText = `You Win! ${playerMove} beats ${computerMove}.`;
+                let loseText = `You lose! ${computerMove} beats ${playerMove}.`;
+
+                playRound(playerMove, computerMove);
+    
+                function playRound(playerSelection, computerSelection) {
         
-        // when player draws with computer
-        if(playerSelection === computerSelection){
-            console.log( `It's a draw! ${playerSelection} ties with ${computerSelection}`)
-        } 
+                    // when player draws with computer
+                    if(playerSelection === computerSelection){
+                        draws++;
+                        console.log( `It's a draw! ${playerSelection} ties with ${computerSelection}.`)
+                    } 
 
-        // when player selects rock
-        if(playerSelection === "rock") {
-            switch(computerSelection){
-                // lose case
-                case "paper":
-                    return `You lose! ${computerSelection} beats ${playerSelection}`
-                
-                // win case
-                case "scissors":
-                    return `You Win! ${playerSelection} beats ${computerSelection}`
+                    // when player selects rock
+                    if(playerSelection === "rock") {
+                        switch(computerSelection){
+                            // lose case
+                            case "paper":
+                                computerScore++;
+                                console.log(loseText);
+                                break;
+                    
+                            // win case
+                            case "scissors":
+                                playerScore++;
+                                console.log(winText);
+                                break;
+                        }
+                    }
 
+                    // when player selects paper
+                    if(playerSelection === "paper") {
+                        switch(computerSelection){
+                        // lose case
+                        case "scissors":
+                            computerScore++;
+                            console.log(loseText);
+                            break;
+
+                        // win case
+                        case "rock":
+                            playerScore++;
+                            console.log(winText);
+                            break;
+                        }
+                    }
+
+                    // when player selects scissors
+                    if(playerSelection === "scissors") {
+                        switch(computerSelection){
+                        // lose case
+                        case "rock":
+                            computerScore++;
+                            console.log(loseText);
+                            break;
+
+                        // win case
+                        case "paper":
+                            playerScore++;
+                            console.log(winText);
+                            break;
+                        }
+                    }
+                    
+                }
+        
+    
             }
-        }
 
-            // when player selects paper
-        if(playerSelection === "paper") {
-            switch(computerSelection){
-                // lose case
-                case "scissors":
-                    return `You lose! ${computerSelection} beats ${playerSelection}`
-
-                // win case
-                case "rock":
-                    return `You Win! ${playerSelection} beats ${computerSelection}`
-
-            }
-
-        }
-
-        // when player selects scissors
-        if(playerSelection === "scissors") {
-            switch(computerSelection){
-                // lose case
-                case "rock":
-                playerScore++;
-                    return `You lose! ${computerSelection} beats ${playerSelection}`
-
-                // win case
-                case "paper":
-                    return `You Win! ${playerSelection} beats ${computerSelection}`
-
-            }
-
-        }
-
-
-      }
-
-       
-            playRound(playerSelection,computerPlay());
-            console.log(playerScore)
-       
+            
+        // Reporting final result out of 5 rounds
+        if(playerScore > computerScore) console.log(`You won ${playerScore}:${computerScore}(${draws})!`);
+        if(playerScore < computerScore) console.log(`You lost ${playerScore}:${computerScore}(${draws}).`);
+        if(playerScore === computerScore) console.log(`You drew ${playerScore}:${computerScore}(${draws}).`);
+                                                 
       }
 
     </script>
